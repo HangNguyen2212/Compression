@@ -3,7 +3,7 @@ import tkinter,tkinter.filedialog
 from tkinter.filedialog import askopenfilename
 from tkinter import *
 from PIL import ImageTk, Image
-
+from rle import main as RLEmain
 import os
 
 filePath=""
@@ -25,12 +25,12 @@ def callback():
     w.configure(text = root.filename)
     filePath = root.filename
     
-    basewidth = 300
-    img = Image.open(root.filename)
-    wpercent = (basewidth / float(img.size[0]))
-    hsize = int((float(img.size[1]) * float(wpercent)))
-    img = img.resize((basewidth, hsize), Image.ANTIALIAS)
-    img.save('resized_image.jpg')
+    basewidth_1 = 300
+    img_1 = Image.open(root.filename)
+    wpercent = (basewidth_1 / float(img_1.size[0]))
+    hsize = int((float(img_1.size[1]) * float(wpercent)))
+    img_1 = img_1.resize((basewidth_1, hsize), Image.ANTIALIAS)
+    img_1.save('resized_image.jpg')
     #resize img to fit label
     before = Image.open('resized_image.jpg')
     bardejov = ImageTk.PhotoImage(before)
@@ -74,7 +74,9 @@ for val, language in enumerate(languages):
 
 #inputFile = os.path(Text)
 
-
+image_file = 'img.jpg'
+encode_file = 'img_encode.txt'
+decode_file = 'img_decode.jpg'
 
 #COMPRESSBTN
 def Compress():
@@ -83,7 +85,20 @@ def Compress():
     T2.pack()
     T2.place(x=650, y=340)   
     if v.get()== 0:
-        pass
+        RLEmain(image_file,encode_file,decode_file)
+        
+        basewidth_2 = 300
+        img_2 = Image.open('img_decode.jpg')
+        wpercent = (basewidth_2 / float(img_2.size[0]))
+        hsize = int((float(img_2.size[1]) * float(wpercent)))
+        img_2 = img_2.resize((basewidth_2, hsize), Image.ANTIALIAS)
+        img_2.save('resized_decode_image.jpg')
+        #resize img to fit label
+        after = Image.open('resized_decode_image.jpg')
+        rotunda = ImageTk.PhotoImage(after)
+        label2 = Label(root,width= 300, heigh= 300, image=rotunda)
+        label2.image = rotunda
+        label2.place(x=520, y=380)
     elif v.get()== 1:
         pass
     else:
@@ -92,18 +107,12 @@ def Compress():
 btn = Button(root, text="Compress", command=Compress)
 btn.pack()
 
-# before = Image.open(callback())
+
+
+#resize img to fit label
+# before = Image.open('resized_image.jpg')
 # bardejov = ImageTk.PhotoImage(before)
 # label1 = Label(root,width= 300, heigh= 300, image=bardejov)
 # label1.image = bardejov
 # label1.place(x=20, y=380)
-
-
-# after = Image.open(callback())
-# rotunda = ImageTk.PhotoImage(after)
-# label2 = Label(root,width= 300, heigh= 300, image=rotunda)
-# label2.image = rotunda
-# label2.place(x=520, y=380)        
-
-
 root.mainloop()
