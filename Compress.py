@@ -42,9 +42,9 @@ def callback():
     wpercent = (basewidth_1 / float(img_1.size[0]))
     hsize = int((float(img_1.size[1]) * float(wpercent)))
     img_1 = img_1.resize((basewidth_1, hsize), Image.ANTIALIAS)
-    img_1.save('resized_image.jpg')
+    img_1.save('resized_input_image.jpg')
     #resize img to fit label
-    before = Image.open('resized_image.jpg','r')
+    before = Image.open('resized_input_image.jpg','r')
     bardejov = ImageTk.PhotoImage(before)
     label1 = Label(root,width= 300, heigh= 300, image=bardejov)
     label1.image = bardejov
@@ -58,6 +58,16 @@ def callback():
     T1_size = Label(root, text= dimensions,font=("Helvetica", 10))
     T1_size.pack()
     T1_size.place(x=150, y=360)     
+
+    T2 = Label(root,width= 30, heigh= 10)
+    T2.pack()
+    T2.place(x=620, y=340)  
+    T3 = Label(root,width= 30, heigh= 10)
+    T3.pack()
+    T3.place(x=360, y=600)
+    T4 = Label(root,width= 30, heigh= 10)
+    T4.pack()
+    T4.place(x=620, y=360) 
 
 
 w = Label(root, text= "UNKNOWN FILE", bg="black", fg="white")
@@ -144,14 +154,8 @@ def Compress():
     show_encode.place(x=360,y=600)
 
 def OnClick():
-    # window = tk.Toplevel(root)
-    # window.geometry("300x500")
-    # window.configure(background='white')
-    # window.title ="img_encode"
     with open('img_encode.txt') as infp:
         txt = infp.read()
-    # results= Label(window, text= data, bg="white", fg="black")
-    # results.pack(fill=X,padx=10)
     top = tk.Toplevel()
     top.title("FILE ENCODE")
     about_message = (txt)
