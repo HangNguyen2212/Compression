@@ -138,8 +138,8 @@ def main(image_file, encode_file, decode_file):
 
 
 if __name__ == 'RLEmain':
-    # image_file = 'img.jpg'
-    # encode_file = 'lenna_encode.txt'
-    # decode_file = 'lenna_decode.png'
+    image_file = ''
+    encode_file = ''
+    decode_file = ''
 
     main(image_file, encode_file, decode_file)
